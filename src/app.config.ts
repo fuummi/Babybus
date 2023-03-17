@@ -1,5 +1,5 @@
 export default defineAppConfig({
-  pages: ["pages/home/index", "pages/map/index", "pages/personal/index"],
+  pages: ["pages/personal/index", "pages/home/index", "pages/map/index"],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
@@ -42,5 +42,5 @@ export default defineAppConfig({
     "scope.userLocation": {
       desc: "你的位置信息将用于小程序定位"
     }
-}
+  }
 });
