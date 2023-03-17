@@ -1,10 +1,13 @@
 import { View, Text } from "@tarojs/components";
-import "./index.less";
+import Taro from '@tarojs/taro'
+import { useEffect } from "react";
+import "./index.module.less";
 
 export default function Index(props) {
+  
   return (
     <View className='index'>
-      <Text>Hello world!</Text>
+      <Text>首页</Text>
     </View>
   );
 }
