@@ -32,7 +32,7 @@ export default function Index() {
         });
         Taro.setStorageSync("userInfo", {
           nickname: res.userInfo.nickName,
-          avata: res.userInfo.avatarUrl
+          avata: res.userInfo.avatarUrl,
         });
       }
     });

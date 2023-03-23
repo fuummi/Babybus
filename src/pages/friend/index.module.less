@@ -1,0 +1,76 @@
+.friendwrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  .serach {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 2vh;
+    input {
+      display: inline-block;
+      width: 60vw;
+      height: 6vh;
+      background-color: #fecc2b;
+      border-radius: 30px;
+      text-align: center;
+      color: #fff;
+    }
+    button {
+      margin-left: 3vw;
+      width: 17vw;
+      height: 5vh;
+      background-color: #1098fe;
+      color: #fff;
+      text-align: center;
+      line-height: 5vh;
+    }
+  }
+  .title{
+    position: absolute;
+    top: 10vh;
+    left: 10vw;
+  }
+  .list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 14vh;
+    width: 80vw;
+    overflow: scroll;
+    border: 1px solid #c7c2c8;
+    border-radius: 30px;
+    margin-bottom: 10vh;
+    .listitem {
+      display: flex;
+      align-items: center;
+      width: 75vw;
+      height: 10vh;
+      margin: 0.5vh 0;
+      border-bottom: 1px solid #c6c1c7;
+      image {
+        width: 10vw;
+        height: 10vw;
+      }
+      .username {
+        margin-left: 5vw;
+      }
+      button {
+        width: 25vw;
+        height: 9vw;
+        color: #fff;
+        border-radius: 30px;
+        background-color: #f54826;
+        text-align: center;
+        line-height: 9vw;
+        font-size: 4vw;
+        margin-left: 20vw;
+      }
+    }
+  }
+}

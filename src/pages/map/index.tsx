@@ -2,7 +2,7 @@ import { View, Text, Map, MapProps } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import { useEffect, useState } from "react";
 import styles from "./index.module.less";
-import { stations, road1,road2 } from "../../assets/sation";
+import { stations, road1, road2 } from "../../assets/sation";
 import icon from "../../assets/icons/station.png";
 
 export default function Index() {
@@ -84,7 +84,12 @@ export default function Index() {
       >
         <View className={styles.navigation}>路线规划</View>
         <View className={styles.right}>
-          <View className={styles.friend}>寻友路线</View>
+          <View
+            className={styles.friend}
+            onClick={() => Taro.navigateTo({ url: "../friend/index" })}
+          >
+            寻友路线
+          </View>
           <View className={styles.info}>信息查询</View>
         </View>
       </View>
