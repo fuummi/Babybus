@@ -1,9 +1,10 @@
 export default defineAppConfig({
   pages: [
-    "pages/friend/index",
     "pages/personal/index",
+    "pages/busrate/index",
+    "pages/friend/index",
     "pages/home/index",
-    "pages/map/index",
+    "pages/map/index"
   ],
   window: {
     backgroundTextStyle: "light",

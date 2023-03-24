@@ -1,0 +1,54 @@
+.evaluationWrap {
+  position: relative;
+  .topTab {
+    position: absolute;
+    top: 1vh;
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-around;
+  }
+  .main {
+    position: absolute;
+    top: 8vh;
+    width: 100vw;
+    height: 92vh;
+    .totalRate,
+    .personRate {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .rateListItem {
+        width: 90vw;
+        height: 20vw;
+        border-bottom: 1px solid #c6c1c7;
+        position: relative;
+        .busname {
+          position: absolute;
+          top: 2vw;
+          font-size: 6vw;
+          font-weight: 600;
+        }
+        .busline {
+          position: absolute;
+          top: 12vw;
+        }
+        .time{
+          position: absolute;
+          top: 12vw;
+          left: 30vw;
+        }
+        .busrate {
+          position: absolute;
+          top: 2vw;
+          right: 5vw;
+          width: 20vw;
+          height: 14vw;
+          border-radius: 30px;
+          text-align: center;
+          line-height: 14vw;
+        }
+      }
+    }
+  }
+}

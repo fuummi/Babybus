@@ -1,4 +1,4 @@
-import { request } from "@tarojs/taro-h5/dist/api/network/request";
+import request from "./utill";
 
 const BASE_URL = "";
 
@@ -12,29 +12,23 @@ interface ILoginRes {
   token: string;
 }
 
-export async function loginFn(code: string): Promise<IRes<ILoginRes>> {
-  const res = await request({
+export async function loginFn(code: string) {
+  const res = await request<ILoginRes>({
     method: "POST",
-    url: `${BASE_URL}/user/regester`,
+    url: `/user/regester`,
     data: {
       code
-    },
-    fail: err => {
-      throw new Error(err);
     }
   });
   return res;
 }
 
-export async function quitLoginFn(token: string): Promise<IRes<ILoginRes>> {
-  const res = await request({
+export async function quitLoginFn(token: string) {
+  const res = await request<ILoginRes>({
     method: "POST",
-    url: `${BASE_URL}/user/quit`,
+    url: `/user/quit`,
     data: {
       token
-    },
-    fail: err => {
-      throw new Error(err);
     }
   });
   return res;

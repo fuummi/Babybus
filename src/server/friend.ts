@@ -1,36 +1,35 @@
-import { request } from "@tarojs/taro-h5/dist/api/network/request";
-
-const BASE_URL = "";
+import request from "./utill";
 
 export interface Ibinding {
   code: string;
   info: string;
 }
 
-export async function findFriendsFn(friendId: string): Promise<Ibinding> {
-  const res = await request({
+export async function initFriendFn() {
+  const res = await request<Ibinding>({
+    method: "GET",
+    url: `/user/bindRecord`
+  });
+  return res;
+}
+
+export async function findFriendsFn(serachKey: string) {
+  const res = await request<Ibinding>({
     method: "POST",
-    url: `${BASE_URL}/user/findFriends`,
+    url: `/user/findFriends`,
     data: {
-      friendId
-    },
-    fail: err => {
-      throw new Error(err);
+      serachKey
     }
   });
   return res;
 }
 
-
-export async function bindingFn(friendId: string): Promise<Ibinding> {
-  const res = await request({
+export async function bindingFn(friendId: string) {
+  const res = await request<Ibinding>({
     method: "POST",
-    url: `${BASE_URL}/user/bindFriends`,
+    url: `/user/bindFriends`,
     data: {
       friendId
-    },
-    fail: err => {
-      throw new Error(err);
     }
   });
   return res;

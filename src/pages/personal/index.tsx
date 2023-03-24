@@ -32,7 +32,7 @@ export default function Index() {
         });
         Taro.setStorageSync("userInfo", {
           nickname: res.userInfo.nickName,
-          avata: res.userInfo.avatarUrl,
+          avata: res.userInfo.avatarUrl
         });
       }
     });
@@ -49,12 +49,12 @@ export default function Index() {
     // const token: string = Taro.getStorageSync("token");
     // const res = await quitLoginFn(token);
     // if (res.code === "200") {
-      Taro.setStorageSync("token", "");
-      Taro.setStorageSync("userInfo", "");
-      setUserInfo({
-        nickname: '点击登录',
-        avata: logo
-      });
+    Taro.setStorageSync("token", "");
+    Taro.setStorageSync("userInfo", "");
+    setUserInfo({
+      nickname: "点击登录",
+      avata: logo
+    });
     // }
   }
 
@@ -71,8 +71,20 @@ export default function Index() {
         </View>
       </View>
       <View className={styles.main}>
-        <View className={styles.evaluation}>历史评价</View>
-        <View className={styles.friend}>好友关系</View>
+        <View
+          className={styles.evaluation}
+          onClick={() =>
+            Taro.navigateTo({ url: "/pages/busrate/index?initpage=1" })
+          }
+        >
+          历史评价
+        </View>
+        <View
+          className={styles.friend}
+          onClick={() => Taro.navigateTo({ url: "/pages/friend/index" })}
+        >
+          好友关系
+        </View>
         <View className={styles.routes}>常用线路</View>
         <View className={styles.person}>个人信息</View>
       </View>
