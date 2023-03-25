@@ -4,17 +4,15 @@ import { useEffect, useState } from "react";
 import { getBusRateFn, getMyRateFn } from "../../server/busrate";
 import styles from "./index.module.less";
 
-export default function Index(props: { initPage: number }) {
-  const [currentTab, setCurrentTab] = useState(
-    props.initPage ? props.initPage : 0
-  );
+export default function Index() {
+  const [currentTab, setCurrentTab] = useState(0);
   const [busrate, setBusrate] = useState<any>();
   const [myrate, setMyrate] = useState<any>();
   useEffect(() => {
-    const instance = Taro.getCurrentInstance()
+    const instance = Taro.getCurrentInstance();
     getBusRate();
     getMyRate();
-    setCurrentTab(Number(instance.router?.params.initpage))
+    setCurrentTab(Number(instance.router?.params.initpage));
   }, []);
   async function getBusRate() {
     // const res = await getBusRateFn()
@@ -60,7 +58,7 @@ export default function Index(props: { initPage: number }) {
       if (e.rate > 4) e.color = "green";
       else if (e.rate > 3) e.color = "yellow";
       else if (e.rate > 2) e.color = "orange";
-      else if (e.rate > 1) e.color = "red";
+      else if (e.rate > 0) e.color = "red";
       else e.color = "green";
     });
     setBusrate(res);
@@ -123,8 +121,8 @@ export default function Index(props: { initPage: number }) {
       if (e.rate > 4) e.color = "green";
       else if (e.rate > 3) e.color = "yellow";
       else if (e.rate > 2) e.color = "orange";
-      else if (e.rate > 1) e.color = "red";
-      else e.color = "green";
+      else if (e.rate > 0) e.color = "red";
+      else e.color = "red";
     });
     setMyrate(res);
   }

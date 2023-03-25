@@ -1,0 +1,73 @@
+.busroadWrap {
+  position: relative;
+  background-color: #efefef;
+  .topTab {
+    position: absolute;
+    top: 1vh;
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #cdcdcd;
+  }
+  .main {
+    position: absolute;
+    top: 8vh;
+    width: 100vw;
+    height: 92vh;
+    .total,
+    .person {
+      position: absolute;
+      left: 5vw;
+      width: 90vw;
+      height: 92vh;
+      .listItem {
+        position: relative;
+        width: 90vw;
+        height: 20vh;
+        display: flex;
+        overflow-x: scroll;
+        margin-bottom: 5vh;
+        border-bottom: 1px solid #cdcdcd;
+        .busname {
+          position: fixed;
+          font-size: 7vw;
+          font-weight: 600;
+        }
+        .station {
+          position: absolute;
+          top: 10vh;
+          display: flex;
+          .stations {
+            position: relative;
+            width: 15vw;
+            height: 5vh;
+            padding-bottom: 2vw;
+            border-bottom: 7px solid rgb(255, 76, 76);
+            text-align: center;
+            
+          }
+          .stations::after {
+            position: absolute;
+            content: "";
+            width: 3vw;
+            height: 3vw;
+            border-radius: 50%;
+            background-color: rgb(255, 76, 76);
+            top: 5.5vh;
+            left: 6vw;
+          }
+        }
+        button{
+          position: fixed;
+          right: 10vw;
+          width:35vw;
+          height: 10vw;
+          line-height: 10vw;
+          background-color: #ffca2d;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

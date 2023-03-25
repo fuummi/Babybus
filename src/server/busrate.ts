@@ -9,7 +9,7 @@ interface IBusRate {
 export async function getBusRateFn() {
   const res = await request<IBusRate>({
     method: "GET",
-    url: `/user/singleScore`
+    url: `/bus/totalAverage`
   });
   return res;
 }

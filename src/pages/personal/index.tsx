@@ -5,10 +5,17 @@ import styles from "./index.module.less";
 import logo from "../../assets/logo.jpg";
 import { loginFn, quitLoginFn } from "../../server/login";
 
+interface IuserInfo {
+  nickname: string;
+  avata: string;
+  gender: string;
+}
+
 export default function Index() {
   const [userInfo, setUserInfo] = useState({
     nickname: "点击登录",
-    avata: logo
+    avata: logo,
+    gender: "0"
   });
   useEffect(() => {
     // const token = Taro.getStorageSync("token");
@@ -16,7 +23,8 @@ export default function Index() {
       const userInfo = Taro.getStorageSync("userInfo");
       setUserInfo({
         nickname: userInfo.nickname,
-        avata: userInfo.avata
+        avata: userInfo.avata,
+        gender: userInfo.gender
       });
     }
   }, []);
@@ -28,11 +36,13 @@ export default function Index() {
         console.log(res);
         setUserInfo({
           nickname: res.userInfo.nickName,
-          avata: res.userInfo.avatarUrl
+          avata: res.userInfo.avatarUrl,
+          gender: res.userInfo.gender ? String(res.userInfo.gender) : "0"
         });
         Taro.setStorageSync("userInfo", {
           nickname: res.userInfo.nickName,
-          avata: res.userInfo.avatarUrl
+          avata: res.userInfo.avatarUrl,
+          gender: res.userInfo.gender ? String(res.userInfo.gender) : "0"
         });
       }
     });
@@ -85,8 +95,20 @@ export default function Index() {
         >
           好友关系
         </View>
-        <View className={styles.routes}>常用线路</View>
-        <View className={styles.person}>个人信息</View>
+        <View
+          className={styles.routes}
+          onClick={() =>
+            Taro.navigateTo({ url: "/pages/busroad/index?initpage=1" })
+          }
+        >
+          常用线路
+        </View>
+        <View
+          className={styles.person}
+          onClick={() => Taro.navigateTo({ url: "/pages/personinfo/index" })}
+        >
+          个人信息
+        </View>
       </View>
       <Button className={styles.quit} onClick={quitLogin}>
         退出登录
