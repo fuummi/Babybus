@@ -2,12 +2,12 @@ import { View, Text, Map, MapProps } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import { useEffect, useState } from "react";
 import styles from "./index.module.less";
-import { stations, road1, road2 } from "../../assets/sation";
+import { stations, roads } from "../../assets/sation";
 import icon from "../../assets/icons/station.png";
 
 export default function Index() {
   const [windowHeight, setWindowHeight] = useState(0);
-  const [close, setClose] = useState(0);
+  const [close, setClose] = useState(20);
   const mapContext = Taro.createMapContext("map");
   console.log(123123);
 
@@ -33,7 +33,7 @@ export default function Index() {
     // });
     const markers: any = [];
     stations.forEach(({ name, latitude, longitude }, i) => {
-      // if (i === 12) {
+      // if (i === 26) {
       markers.push({
         id: i,
         latitude,
@@ -51,23 +51,70 @@ export default function Index() {
 
     console.log(Taro.getCurrentInstance().page);
   }, []);
-  const polylinePoints: any[] = [];
-  road2.forEach(e => {
-    polylinePoints.push({
+  const polylinePoints1: any[] = [];
+  const polylinePoints2: any[] = [];
+  const polylinePoints3: any[] = [];
+  const polylinePoints4: any[] = [];
+  roads.one.points.forEach(e => {
+    polylinePoints1.push({
+      latitude: e.latitude,
+      longitude: e.longitude
+    });
+  });
+  roads.two.points.forEach(e => {
+    polylinePoints2.push({
+      latitude: e.latitude,
+      longitude: e.longitude
+    });
+  });
+  roads.three.points.forEach(e => {
+    polylinePoints3.push({
+      latitude: e.latitude,
+      longitude: e.longitude
+    });
+  });
+  roads.four.points.forEach(e => {
+    polylinePoints4.push({
       latitude: e.latitude,
       longitude: e.longitude
     });
   });
   const polyline: MapProps.polyline[] = [
     {
-      points: polylinePoints,
-      // color: "red",
-      width: 2
-      // arrowLine: true,
-      // borderWidth: 2
+      points: polylinePoints1,
+      color: "#9748f9",
+      width: 2,
+      arrowLine: true,
+    },
+    {
+      points: polylinePoints2,
+      color: "#16ad5e",
+      width: 2,
+      arrowLine: true,
+    },
+    {
+      points: polylinePoints3,
+      color: "#1099f9",
+      width: 2,
+      arrowLine: true,
+    },
+    {
+      points: polylinePoints4,
+      color: "#fbce2d",
+      width: 2,
+      arrowLine: true,
     }
   ];
-  console.log(polyline);
+  // const polyline2: MapProps.polyline = [
+
+  // ];
+  // const polyline3: MapProps.polyline[] = [
+
+  // ];
+  // const polyline4: MapProps.polyline[] = [
+
+  // ];
+  // console.log(polyline);
 
   return (
     <View>
