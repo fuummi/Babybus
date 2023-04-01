@@ -10,27 +10,36 @@ import {
 import Taro from "@tarojs/taro";
 import { useEffect, useState } from "react";
 import styles from "./index.module.less";
-import { stations, road1, road2 } from "../../assets/sation";
+import { stations, roads } from "../../assets/sation";
 import icon from "../../assets/icons/station.png";
 import Init from "./init";
 import Result from "./result";
 
+interface IResult {
+  title: string;
+  msg: {
+    msg1: string;
+    msg2: string;
+  };
+  buttontext: string;
+}
+
 export default function Index() {
-  const [windowHeight, setWindowHeight] = useState(0);
   const mapContext = Taro.createMapContext("map");
+  const [windowHeight, setWindowHeight] = useState(0);
   const [isSerach, setIsSerach] = useState(false);
   const [confrim, setConfrim] = useState(false);
+  const [hasResult, setHasResult] = useState(false);
   const [mapscale, setMapscale] = useState(15);
-  const [serachValue, setSerachValue] = useState("");
-  const [result, setResult] = useState({
-    title: "兴业苑",
-    msg: {
-      msg1: "所属路线：一号线",
-      msg2: "周边：菜鸟驿站 莘莘食堂 兴业苑2舍"
-    },
-    buttontext: "规划路线"
-  });
+  const [result, setResult] = useState<IResult | null>(null);
+  const [polyline, setPolyline] = useState<MapProps.polyline[]>([]);
   const info = Taro.getSystemInfoSync();
+  const polylinePoints1: MapProps.point[] = [];
+  const polylinePoints2: MapProps.point[] = [];
+  const polylinePoints3: MapProps.point[] = [];
+  const polylinePoints4: MapProps.point[] = [];
+  // let polylinePoints: MapProps.polyline[] = [];
+  const [polylinePoints, setPolylinePoints] = useState<MapProps.polyline[]>([]);
   useEffect(() => {
     if (isSerach) {
       setWindowHeight(info.windowHeight);
@@ -66,36 +75,136 @@ export default function Index() {
         longitude,
         iconPath: icon,
         title: name,
-        width: 20,
-        height: 20
+        width: 30,
+        height: 30
       });
       // }
     });
     mapContext.addMarkers({
       markers: markers
     });
-  }, []);
-  const polylinePoints: any[] = [];
-  road2.forEach(e => {
-    polylinePoints.push({
-      latitude: e.latitude,
-      longitude: e.longitude
+    roads.one.points.forEach(e => {
+      polylinePoints1.push({
+        latitude: e.latitude,
+        longitude: e.longitude
+      });
     });
-  });
-  const polyline: MapProps.polyline[] = [
-    {
-      points: polylinePoints,
-      width: 2
-    }
-  ];
+    roads.two.points.forEach(e => {
+      polylinePoints2.push({
+        latitude: e.latitude,
+        longitude: e.longitude
+      });
+    });
+    roads.three.points.forEach(e => {
+      polylinePoints3.push({
+        latitude: e.latitude,
+        longitude: e.longitude
+      });
+    });
+    roads.four.points.forEach(e => {
+      polylinePoints4.push({
+        latitude: e.latitude,
+        longitude: e.longitude
+      });
+    });
+    setPolylinePoints([
+      {
+        points: polylinePoints1,
+        color: "#9748f9",
+        width: 2,
+        arrowLine: true
+      },
+      {
+        points: polylinePoints2,
+        color: "#16ad5e",
+        width: 2,
+        arrowLine: true
+      },
+      {
+        points: polylinePoints3,
+        color: "#1099f9",
+        width: 2,
+        arrowLine: true
+      },
+      {
+        points: polylinePoints4,
+        color: "#fbce2d",
+        width: 2,
+        arrowLine: true
+      }
+    ]);
+    setPolyline([
+      {
+        points: polylinePoints1,
+        color: "#9748f9",
+        width: 2,
+        arrowLine: true
+      },
+      {
+        points: polylinePoints2,
+        color: "#16ad5e",
+        width: 2,
+        arrowLine: true
+      },
+      {
+        points: polylinePoints3,
+        color: "#1099f9",
+        width: 2,
+        arrowLine: true
+      },
+      {
+        points: polylinePoints4,
+        color: "#fbce2d",
+        width: 2,
+        arrowLine: true
+      }
+    ]);
+  }, []);
 
+  useEffect(() => {
+    if (!confrim && polylinePoints.length) {
+      setPolyline(polylinePoints);
+      console.log(polyline);
+    }
+  }, [confrim]);
   function enterSreach() {
     setIsSerach(true);
   }
-  function onConfirm() {
+
+  function onConfirm(val: string) {
+    setConfrim(true);
     setWindowHeight(info.windowHeight * 0.6);
-    stations.forEach(e => {
-      if (serachValue.includes(e.name)) {
+    let i = 0;
+    for (const key in roads) {
+      if (Object.prototype.hasOwnProperty.call(roads, key)) {
+        const e = roads[key];
+        if (val.match(new RegExp(e.bus))) {
+          setResult({
+            title: e.bus + "线",
+            msg: {
+              msg1: e.num,
+              msg2: e.time
+            },
+            buttontext: "查看详情"
+          });
+          setMapscale(15);
+          setHasResult(true);
+          setPolyline([
+            {
+              points: polylinePoints[i].points,
+              color: polylinePoints[i].color,
+              width: 5,
+              arrowLine: true
+            }
+          ]);
+          return;
+        }
+        i++;
+      }
+    }
+    for (let i = 0; i < stations.length; i++) {
+      const e = stations[i];
+      if (e.name.includes(val)) {
         const { latitude, longitude, owner, nearby } = e;
         setMapscale(19);
         mapContext.moveToLocation({
@@ -103,15 +212,20 @@ export default function Index() {
           longitude
         });
         setResult({
-          title: e.name,
+          title: e.name + "站",
           msg: {
             msg1: owner,
             msg2: nearby
           },
-          buttontext: "规划路线"
+          buttontext: "路线规划"
         });
+        setHasResult(true);
+        return;
+      } else {
+        setHasResult(false);
+        setResult(null);
       }
-    });
+    }
   }
   function closeWindow() {
     setConfrim(false);
@@ -169,9 +283,9 @@ export default function Index() {
         style={{
           transform: isSerach
             ? confrim
-              ? "translateY(25vh)"
+              ? "translateY(10vh)"
               : "translateY(0vh)"
-            : "translateY(65vh)"
+            : "translateY(50vh)"
         }}
         className={styles.queryWindow}
       >
@@ -180,19 +294,14 @@ export default function Index() {
         </View>
         {isSerach && confrim ? (
           <Result
-            title={result.title}
-            msg={{
-              msg1: result.msg.msg1,
-              msg2: result.msg.msg2
+            hasResult={hasResult}
+            result={result}
+            returnPre={() => {
+              setConfrim(false);
             }}
-            buttontext={result.buttontext}
           ></Result>
         ) : (
-          <Init
-            setSerachValue={setSerachValue}
-            onConfirm={onConfirm}
-            setConfrim={setConfrim}
-          ></Init>
+          <Init onConfirm={onConfirm}></Init>
         )}
       </View>
     </View>

@@ -1,10 +1,10 @@
 export default defineAppConfig({
   pages: [
-    "pages/map/index",
     "pages/home/index",
+    "pages/busroad/index",
     "pages/personal/index",
     "pages/personinfo/index",
-    "pages/busroad/index",
+    "pages/map/index",
     "pages/busrate/index",
     "pages/friend/index"
   ],

@@ -1,10 +1,11 @@
 import Taro from "@tarojs/taro";
-import { View, Button } from "@tarojs/components";
+import { View, Button, Text } from "@tarojs/components";
 import { useEffect, useState } from "react";
 import { getAllBusFn, getMyBusFn, addMyBusFn } from "../../server/bus";
 import useToast from "../../components/toast/useToast";
 import Toast from "../../components/toast/index";
 import styles from "./index.module.less";
+import { pureRoads } from "../../assets/sation";
 
 export default function Index() {
   const [currentTab, setCurrentTab] = useState(0);
@@ -19,128 +20,11 @@ export default function Index() {
   }, []);
   async function getTotalBus() {
     // const res = await getAllBusFn();
-    setTotal([
-      {
-        name: "一号线",
-        id: "1",
-        station: [
-          "AAAA",
-          "B",
-          "C",
-          "D",
-          "E",
-          "F",
-          "G",
-          "H",
-          "I",
-          "J",
-          "K",
-          "L",
-          "M",
-          "N",
-          "O",
-          "P",
-          "Q"
-        ]
-      },
-      {
-        name: "二号线",
-        id: "2",
-        station: [
-          "A",
-          "B",
-          "C",
-          "D",
-          "E",
-          "F",
-          "G",
-          "H",
-          "I",
-          "J",
-          "K",
-          "L",
-          "M",
-          "N",
-          "O",
-          "P",
-          "Q"
-        ]
-      },
-      {
-        name: "三号线",
-        id: "3",
-        station: [
-          "A",
-          "B",
-          "C",
-          "D",
-          "E",
-          "F",
-          "G",
-          "H",
-          "I",
-          "J",
-          "K",
-          "L",
-          "M",
-          "N",
-          "O",
-          "P",
-          "Q"
-        ]
-      }
-    ]);
+    setTotal(pureRoads);
   }
   async function getMyBus() {
-    // const res = await getMyBusFn();
-    setMyroad([
-      {
-        name: "一号线",
-        id: "1",
-        station: [
-          "A",
-          "B",
-          "C",
-          "D",
-          "E",
-          "F",
-          "G",
-          "H",
-          "I",
-          "J",
-          "K",
-          "L",
-          "M",
-          "N",
-          "O",
-          "P",
-          "Q"
-        ]
-      },
-      {
-        name: "二号线",
-        id: "2",
-        station: [
-          "A",
-          "B",
-          "C",
-          "D",
-          "E",
-          "F",
-          "G",
-          "H",
-          "I",
-          "J",
-          "K",
-          "L",
-          "M",
-          "N",
-          "O",
-          "P",
-          "Q"
-        ]
-      }
-    ]);
+    // const res = await getAllBusFn();
+    setMyroad(pureRoads);
   }
   async function addMyBus(id: string) {
     // const res = await addMyBusFn(id)
@@ -170,10 +54,20 @@ export default function Index() {
             {total?.map(e => {
               return (
                 <View className={styles.listItem} key={e.id}>
-                  <View className={styles.busname}>{e.name}</View>
+                  <View className={styles.busname}>{e.name}线</View>
+                  <View className={styles.num}>站数：{e.station.length}</View>
+                  <View className={styles.time}>{e.time}</View>
                   <View className={styles.station}>
-                    {e.station.map(e => {
-                      return <View className={styles.stations}>{e}</View>;
+                    {e.station.map(j => {
+                      return (
+                        <View
+                          className={styles.stations}
+                          style={{ borderColor: e.color }}
+                        >
+                          <Text style={{ backgroundColor: e.color }}></Text>
+                          {j}
+                        </View>
+                      );
                     })}
                   </View>
                   <Button
@@ -191,10 +85,20 @@ export default function Index() {
             {myroad?.map(e => {
               return (
                 <View className={styles.listItem} key={e.id}>
-                  <View className={styles.busname}>{e.name}</View>
+                  <View className={styles.busname}>{e.name}线</View>
+                  <View className={styles.num}>站数：{e.station.length}</View>
+                  <View className={styles.time}>{e.time}</View>
                   <View className={styles.station}>
-                    {e.station.map(e => {
-                      return <View className={styles.stations}>{e}</View>;
+                    {e.station.map(j => {
+                      return (
+                        <View
+                          className={styles.stations}
+                          style={{ borderColor: e.color }}
+                        >
+                          <Text style={{ backgroundColor: e.color }}></Text>
+                          {j}
+                        </View>
+                      );
                     })}
                   </View>
                 </View>

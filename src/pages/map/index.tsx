@@ -48,8 +48,6 @@ export default function Index() {
     mapContext.addMarkers({
       markers: markers
     });
-
-    console.log(Taro.getCurrentInstance().page);
   }, []);
   const polylinePoints1: any[] = [];
   const polylinePoints2: any[] = [];

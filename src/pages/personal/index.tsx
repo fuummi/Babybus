@@ -63,6 +63,7 @@ export default function Index() {
     Taro.setStorageSync("userInfo", "");
     setUserInfo({
       nickname: "点击登录",
+      gender: '0',
       avata: logo
     });
     // }

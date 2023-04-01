@@ -1,6 +1,6 @@
 .busroadWrap {
   position: relative;
-  background-color: #efefef;
+  background-color: #d9d9d9;
   .topTab {
     position: absolute;
     top: 1vh;
@@ -11,28 +11,43 @@
     border-bottom: 1px solid #cdcdcd;
   }
   .main {
+    background-color: #f1f1f1;
     position: absolute;
     top: 8vh;
     width: 100vw;
-    height: 92vh;
+    height: 120vh;
     .total,
     .person {
       position: absolute;
-      left: 5vw;
-      width: 90vw;
-      height: 92vh;
       .listItem {
         position: relative;
-        width: 90vw;
-        height: 20vh;
+        padding-left: 5vw;
+        padding-top: 5vw;
+        width: 95vw;
+        height: 29vh;
         display: flex;
         overflow-x: scroll;
-        margin-bottom: 5vh;
-        border-bottom: 1px solid #cdcdcd;
+        margin-bottom: 1vh;
+        background-color: #fff;
+        scroll-snap-type: none;
+        // border-bottom: 1px solid #cdcdcd;
         .busname {
-          position: fixed;
+          // position: fixed;
+          position: absolute;
           font-size: 7vw;
           font-weight: 600;
+        }
+        .num{
+          position: absolute;
+          left: 30vw;
+          top: 5vh;
+          font-size: 3.5vw;
+        }
+        .time{
+          position: absolute;
+          left: 30vw;
+          top: 3vh;
+          font-size: 3.5vw;
         }
         .station {
           position: absolute;
@@ -40,32 +55,40 @@
           display: flex;
           .stations {
             position: relative;
-            width: 15vw;
+            padding-top: 2vw;
+            padding-right: 10vw;
+            width: 5vw;
             height: 5vh;
             padding-bottom: 2vw;
-            border-bottom: 7px solid rgb(255, 76, 76);
+            border-top: 10px solid #fff;
             text-align: center;
+            font-size: 3.5vw;
           }
-          .stations::after {
+          .stations:last-child {
+            padding-right: 0;
+            margin-right: 5vw;
+          }
+          text {
             position: absolute;
             content: "";
-            width: 3vw;
-            height: 3vw;
+            width: 4vw;
+            height: 4vw;
             border-radius: 50%;
             background-color: rgb(255, 76, 76);
-            top: 5.5vh;
-            left: 6vw;
+            top: -1.4vh;
+            left: 0.5vw;
           }
         }
         button {
-          position: fixed;
-          right: 10vw;
-          width: 35vw;
-          height: 10vw;
-          line-height: 10vw;
+          position: absolute;
+          top: 3.5vh;
+          right: 3vw;
+          width: 29vw;
+          height: 8vw;
+          line-height: 8vw;
           background-color: #ffca2d;
           color: #fff;
-          font-size: 4vw;
+          font-size: 3.5vw;
         }
       }
     }
