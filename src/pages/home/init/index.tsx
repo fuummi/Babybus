@@ -9,12 +9,6 @@ export default function Index(props: IPropsFns) {
   return (
     <View className={styles.initpage}>
       <View className={styles.title1}>搜索</View>
-      {/* <View className={styles.recommend}>
-        <View className={styles.title1}>距你最近</View>
-        <View className={styles.stationicon}></View>
-        <View className={styles.closest}>兴业苑站</View>
-        <View className={styles.closestline}>距你800m</View>
-      </View> */}
       <Input
         onConfirm={e => {
           onConfirm(e.target.value);

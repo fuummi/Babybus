@@ -1,12 +1,4 @@
-import {
-  View,
-  Map,
-  MapProps,
-  Swiper,
-  SwiperItem,
-  Input,
-  Image
-} from "@tarojs/components";
+import { View, Map, MapProps, Swiper, SwiperItem } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import { useEffect, useState } from "react";
 import styles from "./index.module.less";
@@ -66,7 +58,7 @@ export default function Index() {
         });
       }
     });
-    const markers: any = [];
+    const markers: MapProps.marker[] = [];
     stations.forEach(({ name, latitude, longitude }, i) => {
       // if (i === 12) {
       markers.push({
@@ -258,17 +250,32 @@ export default function Index() {
           </SwiperItem>
         </Swiper>
       </View>
+      <View className={styles.nav}>
+        <View className={styles.nav1}>扫一扫</View>
+        <View className={styles.nav2}>消息中心</View>
+        <View className={styles.funcs}>
+          <View className={styles.title}>常用功能</View>
+          <View className={styles.contain}>
+            <View className={styles.func1} >实时巴士</View>
+            <View className={styles.func2} onClick={() => Taro.navigateTo({ url: "/pages/busrate/index?initpage=0" })}>巴士评价</View>
+            <View className={styles.func3} onClick={() => Taro.navigateTo({ url: "/pages/busroad/index?initpage=0" })}>巴士线路</View>
+          </View>
+        </View>
+      </View>
       <Map
         id="map"
         style={{
           width: "100%",
           height: windowHeight,
-          transform: isSerach ? "translateY(-26vh)" : "translateY(0vh)"
+          transform: isSerach ? "translateY(-26vh)" : "translateY(100vh)"
         }}
         longitude={106.608}
         latitude={29.53}
         polyline={polyline}
         scale={mapscale}
+        onMarkerTap={e => {
+          isSerach && onConfirm(stations[e.detail.markerId].name);
+        }}
       ></Map>
       <View
         style={{

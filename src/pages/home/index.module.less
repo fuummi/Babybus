@@ -2,11 +2,81 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+  background-color: #f8f9f6;
+  overflow: hidden;
   .banner {
     .swiper {
       width: 100vw;
       height: 26vh;
       transition: transform 300ms;
+      background-color: #fff;
+    }
+  }
+  .nav {
+    width: 100vw;
+    height: 20vh;
+    position: absolute;
+    top: 30vh;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    .nav1,
+    .nav2 {
+      display: inline-block;
+      width: 28vw;
+      height: 28vw;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 39vw;
+      box-shadow: 21px 26px 61px -33px rgba(185, 185, 185, 0.66);
+      color: #5e5e5e;
+    }
+    .nav1 {
+      background: url(../../assets/icons/qr.png) 6.2vw 2vw/15vw,
+        linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+      background-repeat: no-repeat;
+    }
+    .nav2 {
+      background: url(../../assets/icons/message.png) 6vw 2vw/16vw,
+        linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+      background-repeat: no-repeat;
+    }
+    .funcs {
+      position: absolute;
+      width: 90vw;
+      left: 5vw;
+      top: 34vw;
+      .title {
+        font-size: 5vw;
+        font-weight: 600;
+      }
+      .contain {
+        margin-top: 2vh;
+        display: flex;
+        justify-content: space-between;
+        view {
+          width: 20vw;
+          height: 20vw;
+          text-align: center;
+          line-height: 36vw;
+          padding: 2.5vw;
+          background-repeat: no-repeat;
+          border: 1px solid #c6c6c6;
+          border-radius: 20px;
+        }
+        .func1 {
+          background: url(../../assets/icons/timelybus.png) 3vw 0vw/18vw, #fff;
+          background-repeat: no-repeat;
+        }
+        .func2 {
+          background: url(../../assets/icons/rate.png) 4vw 0vw/16vw, #fff;
+          background-repeat: no-repeat;
+        }
+        .func3 {
+          background: url(../../assets/icons/map.png) 6vw 2vw/13vw, #fff;
+          background-repeat: no-repeat;
+        }
+      }
     }
   }
   map {
@@ -17,14 +87,16 @@
   .enter {
     transition: transform 300ms;
     position: absolute;
-    top: 75vh;
+    top: 72vh;
     left: 15vw;
     width: 70vw;
     height: 8vh;
-    background-color: #1298ff;
+    background: url(../../assets/icons/search.png) 6vw 3vw/9vw no-repeat,
+      linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    box-shadow: 21px 26px 61px -33px rgba(185, 185, 185, 0.66);
     border-radius: 30px;
     font-size: 5vw;
-    color: #fff;
+    color: #ffffff;
     text-align: center;
     line-height: 8vh;
   }

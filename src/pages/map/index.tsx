@@ -4,16 +4,25 @@ import { useEffect, useState } from "react";
 import styles from "./index.module.less";
 import { stations, roads } from "../../assets/sation";
 import icon from "../../assets/icons/station.png";
+import Navgation from "./components/navigation/index";
+import Timely from "./components/timely";
+
+interface IResult {
+  name: string;
+  latitude: number;
+  longitude: number;
+}
 
 export default function Index() {
   const [windowHeight, setWindowHeight] = useState(0);
-  const [close, setClose] = useState(20);
+  const [close, setClose] = useState(2);
+  const [page, setPage] = useState(2);
+  const [mapScale, setMapScale] = useState(16);
+  const [topRes, setTopRes] = useState<IResult[] | null>(null);
   const mapContext = Taro.createMapContext("map");
-  console.log(123123);
-
   useEffect(() => {
     const info = Taro.getSystemInfoSync();
-    setWindowHeight(info.windowHeight * 0.86);
+    setWindowHeight(info.windowHeight * 0.88);
     // Taro.getLocation({
     //   type: "gcj02",
     //   success: function(res) {
@@ -82,25 +91,25 @@ export default function Index() {
       points: polylinePoints1,
       color: "#9748f9",
       width: 2,
-      arrowLine: true,
+      arrowLine: true
     },
     {
       points: polylinePoints2,
       color: "#16ad5e",
       width: 2,
-      arrowLine: true,
+      arrowLine: true
     },
     {
       points: polylinePoints3,
       color: "#1099f9",
       width: 2,
-      arrowLine: true,
+      arrowLine: true
     },
     {
       points: polylinePoints4,
       color: "#fbce2d",
       width: 2,
-      arrowLine: true,
+      arrowLine: true
     }
   ];
   // const polyline2: MapProps.polyline = [
@@ -113,7 +122,18 @@ export default function Index() {
 
   // ];
   // console.log(polyline);
-
+  function navSclect(n: number) {
+    if (page === 1) {
+      console.log(n);
+      setTopRes([
+        {
+          name: stations[n].name,
+          latitude: stations[n].latitude,
+          longitude: stations[n].longitude
+        }
+      ]);
+    }
+  }
   return (
     <View>
       <Map
@@ -122,29 +142,59 @@ export default function Index() {
         longitude={106.608}
         latitude={29.53}
         polyline={polyline}
+        scale={mapScale}
+        onMarkerTap={e => {
+          navSclect(e.markerId);
+        }}
       ></Map>
-      <View
-        className={styles.tab}
-        style={{ transform: `translateY(${close}vh)` }}
-      >
-        <View className={styles.navigation}>路线规划</View>
-        <View className={styles.right}>
-          <View
-            className={styles.friend}
-            onClick={() => Taro.navigateTo({ url: "../friend/index" })}
-          >
-            寻友路线
+      {page === 0 ? (
+        <View
+          className={styles.tab}
+          style={{ transform: `translateY(${close}vh)` }}
+        >
+          <View className={styles.navigation} onClick={() => setPage(1)}>
+            路线规划
           </View>
-          <View className={styles.info}>信息查询</View>
+          <View className={styles.right}>
+            <View className={styles.friend} onClick={() => setPage(2)}>
+              实时巴士
+            </View>
+            <View
+              className={styles.info}
+              onClick={() => Taro.navigateTo({ url: "../friend/index" })}
+            >
+              寻友路线
+            </View>
+          </View>
+          <View
+            className={styles.closeTab}
+            onClick={() => setClose(close === 22 ? 2 : 22)}
+          >
+            {close === 22 ? "^" : "x"}
+          </View>
         </View>
-      </View>
-      <View
-        className={styles.closeTab}
-        style={{ transform: `translateY(${close}vh)` }}
-        onClick={() => setClose(close ? 0 : 20)}
-      >
-        {close ? "^" : "x"}
-      </View>
+      ) : (
+        ""
+      )}
+      {page === 1 ? (
+        <Navgation
+          topRes={topRes}
+          returnPre={() => setPage(0)}
+          mapContext={mapContext}
+          setMapScale={setMapScale}
+        ></Navgation>
+      ) : (
+        ""
+      )}
+      {page === 2 ? (
+        <Timely
+          returnPre={() => setPage(0)}
+          mapContext={mapContext}
+          setMapScale={setMapScale}
+        ></Timely>
+      ) : (
+        ""
+      )}
     </View>
   );
 }
