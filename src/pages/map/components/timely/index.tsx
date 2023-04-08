@@ -18,6 +18,7 @@ export default function Index(props: any) {
     station: "兴业苑站",
     dis: 500
   });
+  const [isMore, setIsMore] = useState(false);
   const [moredata, setMoredata] = useState<any>([]);
   useEffect(() => {
     setMapScale(15);
@@ -166,7 +167,13 @@ export default function Index(props: any) {
     ]);
   }
   return (
-    <View className={styles.timelyWrap}>
+    <View
+      className={styles.timelyWrap}
+      style={{
+        height: isMore ? "70vh" : "45vh",
+        transform: isMore ? "translateY(-37vh)" : "none"
+      }}
+    >
       <View className={styles.title}>实时巴士</View>
       <View className={styles.return} onClick={returnPre}>
         X
@@ -182,16 +189,27 @@ export default function Index(props: any) {
       </View>
       <Button className={styles.refresh}></Button>
       <View className={styles.more}>
-        <View className={styles.top11}>
+        <View className={styles.top11} onClick={() => setIsMore(!isMore)}>
           <View className={styles.title1}>查看更多</View>
-          <View className={styles.open1}></View>
+          <View
+            className={styles.open1}
+            style={{
+              transform: isMore ? "rotate(180deg)" : "none"
+            }}
+          ></View>
         </View>
-        <View className={styles.body}>
+        <View
+          className={styles.body}
+          style={{
+            height: isMore ? "40vh" : "0",
+            overflow: isMore ? "scroll" : "hidden"
+          }}
+        >
           {moredata.map(e => {
             return (
               <View className={styles.listItem}>
-                <View>{e.name}</View>
-                <View>{e.time}</View>
+                <View className={styles.name}>{e.name}</View>
+                <View className={styles.time}>{e.time}分钟</View>
               </View>
             );
           })}

@@ -2,10 +2,12 @@ import { View, Text, Map, MapProps } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import { useEffect, useState } from "react";
 import styles from "./index.module.less";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { stations, roads } from "../../assets/sation";
 import icon from "../../assets/icons/station.png";
 import Navgation from "./components/navigation/index";
 import Timely from "./components/timely";
+import { isNav, isTimely } from "../../store";
 
 interface IResult {
   name: string;
@@ -16,10 +18,26 @@ interface IResult {
 export default function Index() {
   const [windowHeight, setWindowHeight] = useState(0);
   const [close, setClose] = useState(2);
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(0);
   const [mapScale, setMapScale] = useState(16);
   const [topRes, setTopRes] = useState<IResult[] | null>(null);
   const mapContext = Taro.createMapContext("map");
+  const isTimelyBoolen = useRecoilState(isTimely);
+  const setIsTimelyBoolen = useSetRecoilState(isTimely);
+  const isNavBoolen = useRecoilState(isNav);
+  const setIsNavBoolen = useSetRecoilState(isNav);
+  useEffect(() => {
+    if (isTimelyBoolen[0]) {
+      setIsTimelyBoolen(() => false);
+      setPage(2);
+    }
+  }, [isTimelyBoolen]);
+  useEffect(() => {
+    if (isNavBoolen[0]) {
+      setIsNavBoolen(() => false);
+      setPage(1);
+    }
+  }, [isNavBoolen]);
   useEffect(() => {
     const info = Taro.getSystemInfoSync();
     setWindowHeight(info.windowHeight * 0.88);

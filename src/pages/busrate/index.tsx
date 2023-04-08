@@ -13,7 +13,7 @@ export default function Index() {
     const instance = Taro.getCurrentInstance();
     getBusRate();
     getMyRate();
-    // setCurrentTab(Number(instance.router?.params.initpage));
+    setCurrentTab(Number(instance.router?.params.initpage));
     setCurrentTab(0);
   }, []);
   async function getBusRate() {

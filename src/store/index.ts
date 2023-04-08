@@ -1,6 +1,11 @@
-import { atom } from 'recoil'
+import { atom } from "recoil";
 
-export const nowPageState = atom({
-  key: 'nowPage',
-  default: "pages/map/index"
-})
+export const isTimely = atom({
+  key: "isTimely",
+  default: false
+});
+
+export const isNav = atom({
+  key: "isNav",
+  default: false
+});

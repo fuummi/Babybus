@@ -1,0 +1,93 @@
+.rateWrap {
+  width: 100vw;
+  height: 100vh;
+  .message {
+    position: relative;
+    width: 100vw;
+    height: 40vh;
+    background-color: #fff;
+    .busname {
+      position: absolute;
+      top: 5vh;
+      left: 5vw;
+      font-size: 6.5vw;
+      font-weight: 600;
+    }
+    .busline {
+      position: absolute;
+      top: 12vh;
+      left: 5vw;
+      font-size: 6.5vw;
+      font-weight: 600;
+    }
+    text {
+      font-size: 6vw;
+      font-weight: 500;
+    }
+    button {
+      position: absolute;
+      top: 23vh;
+      left: 15vw;
+      width: 70vw;
+      background-color: #fbcd2f;
+      color: #fff;
+      border-radius: 30px;
+    }
+  }
+  .rate {
+    position: relative;
+    border-top: 1px solid #c6ae80;
+    width: 100vw;
+    height: 60vh;
+    border-radius: 30px;
+    .title1,
+    .title2 {
+      position: absolute;
+      left: 10vw;
+      font-size: 8vw;
+      font-weight: 600;
+    }
+    .title1 {
+      top: 5vh;
+    }
+    .title2 {
+      top: 12vh;
+    }
+    .stars {
+      position: absolute;
+      width: 80vw;
+      display: flex;
+      justify-content: space-between;
+      left: 10vw;
+      top: 25vh;
+      .star {
+        width: 15vw;
+        height: 15vw;
+        background-image: url(../../assets/icons/star1.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      .star_active {
+        background-image: url(../../assets/icons/star2.png);
+      }
+    }
+    .submit {
+      position: absolute;
+      top: 40vh;
+      left: 32.5vw;
+      width: 35vw;
+      background-color: #00a13b;
+      color: #fff;
+      border-radius: 30px;
+      font-size: 5.5vw;
+    }
+    .jump {
+      position: absolute;
+      top: 43vh;
+      left: 80vw;
+      width: 40vw;
+      text-decoration: underline;
+      color: #9f9f9f;
+    }
+  }
+}

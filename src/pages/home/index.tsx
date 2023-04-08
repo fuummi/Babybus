@@ -1,11 +1,13 @@
 import { View, Map, MapProps, Swiper, SwiperItem } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import { useEffect, useState } from "react";
+import { useSetRecoilState } from "recoil";
 import styles from "./index.module.less";
 import { stations, roads } from "../../assets/sation";
 import icon from "../../assets/icons/station.png";
 import Init from "./init";
 import Result from "./result";
+import { isNav, isTimely } from "../../store";
 
 interface IResult {
   title: string;
@@ -26,6 +28,8 @@ export default function Index() {
   const [result, setResult] = useState<IResult | null>(null);
   const [polyline, setPolyline] = useState<MapProps.polyline[]>([]);
   const info = Taro.getSystemInfoSync();
+  const setIsTimely = useSetRecoilState(isTimely);
+  const setIsNavBoolen = useSetRecoilState(isNav);
   const polylinePoints1: MapProps.point[] = [];
   const polylinePoints2: MapProps.point[] = [];
   const polylinePoints3: MapProps.point[] = [];
@@ -251,14 +255,42 @@ export default function Index() {
         </Swiper>
       </View>
       <View className={styles.nav}>
-        <View className={styles.nav1}>扫一扫</View>
+        <View
+          className={styles.nav1}
+          onClick={() => Taro.navigateTo({ url: "/pages/scancode/index" })}
+        >
+          扫一扫
+        </View>
         <View className={styles.nav2}>消息中心</View>
         <View className={styles.funcs}>
           <View className={styles.title}>常用功能</View>
           <View className={styles.contain}>
-            <View className={styles.func1} >实时巴士</View>
-            <View className={styles.func2} onClick={() => Taro.navigateTo({ url: "/pages/busrate/index?initpage=0" })}>巴士评价</View>
-            <View className={styles.func3} onClick={() => Taro.navigateTo({ url: "/pages/busroad/index?initpage=0" })}>巴士线路</View>
+            <View
+              className={styles.func1}
+              onClick={() => {
+                Taro.switchTab({ url: "/pages/map/index" });
+                setIsTimely(true);
+              }}
+            >
+              实时巴士
+            </View>
+            <View
+              className={styles.func2}
+              onClick={() => {
+                Taro.switchTab({ url: "/pages/map/index" });
+                setIsNavBoolen(true);
+              }}
+            >
+              路线规划
+            </View>
+            <View
+              className={styles.func3}
+              onClick={() =>
+                Taro.navigateTo({ url: "/pages/busroad/index?initpage=0" })
+              }
+            >
+              巴士线路
+            </View>
           </View>
         </View>
       </View>
