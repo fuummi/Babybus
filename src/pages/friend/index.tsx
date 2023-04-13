@@ -41,31 +41,34 @@ export default function Index() {
       {
         id: "uint",
         image: logo,
-        nickname: "string",
+        nickname: "aa",
         day: 365
       },
       {
         id: "uint",
         image: logo,
-        nickname: "string",
+        nickname: "bb",
         day: 365
       },
       {
         id: "uint",
         image: logo,
-        nickname: "string",
+        nickname: "cc",
         day: 365
       },
       {
         id: "uint",
         image: logo,
-        nickname: "string",
+        nickname: "dd",
         day: 365
       }
     ]);
   }
-  async function share() {
+  async function share(id, nickname, avata) {
     changeToastVisible("success", "发起邀请成功！");
+    Taro.navigateTo({
+      url: `/pages/shearposition/index?id=${id}&nickname=${nickname}&avata=${avata}`
+    });
   }
 
   async function binding(friendId: string) {
@@ -175,7 +178,9 @@ export default function Index() {
               <Image src={e.image}></Image>
               <Text className={styles.username}>{e.nickname}</Text>
               <Text className={styles.day}>成为好友{e.day}天</Text>
-              <Button onClick={() => share()}>发起共享</Button>
+              <Button onClick={() => share(e.id, e.nickname, e.image)}>
+                发起共享
+              </Button>
             </View>
           );
         })}
@@ -184,7 +189,7 @@ export default function Index() {
         className={styles.serachlist}
         style={{
           zIndex: isSerach ? "2" : "-1",
-          transition: isSerach ? "none" : "all 500ms",
+          transition: isSerach ? "none" : "all 500ms"
         }}
       >
         <View

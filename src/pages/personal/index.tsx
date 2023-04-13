@@ -20,11 +20,11 @@ export default function Index() {
   useEffect(() => {
     // const token = Taro.getStorageSync("token");
     if (Taro.getStorageSync("userInfo") !== "") {
-      const userInfo = Taro.getStorageSync("userInfo");
+      const userInfo1 = Taro.getStorageSync("userInfo");
       setUserInfo({
-        nickname: userInfo.nickname,
-        avata: userInfo.avata,
-        gender: userInfo.gender
+        nickname: userInfo1.nickname,
+        avata: userInfo1.avata,
+        gender: userInfo1.gender
       });
     }
   }, []);
@@ -46,12 +46,14 @@ export default function Index() {
         });
       }
     });
-    // Taro.login({
-    //   async success(val) {
-    //     const result = await loginFn(val.code);
-    //     Taro.setStorageSync("token", result.data.token);
-    //   }
-    // });
+    Taro.login({
+      async success(val) {
+        console.log(val);
+        
+        // const result = await loginFn(val.code);
+        // Taro.setStorageSync("token", result.data.token);
+      }
+    });
   }
 
   async function quitLogin() {

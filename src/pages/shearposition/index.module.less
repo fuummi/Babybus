@@ -1,0 +1,80 @@
+.wrap {
+  position: relative;
+  .top {
+    position: absolute;
+    top: 5vh;
+    left: 10vw;
+    width: 80vw;
+    height: 20vh;
+    z-index: 2;
+    background-color: #fff;
+    border-radius: 30px;
+    .title {
+      position: absolute;
+      font-size: 5vw;
+      width: 30vw;
+      text-align: center;
+      top: 2vh;
+      left: 25vw;
+    }
+    image {
+      position: absolute;
+      width: 20vw;
+      height: 20vw;
+      border-radius: 50%;
+      top: 7vh;
+      left: 10vw;
+    }
+    .nickname {
+      position: absolute;
+      top: 8vh;
+      left: 43vw;
+      font-size: 5.5vw;
+      padding: 4vw 6vw;
+      background-color: #ffe8a4;
+      border-radius: 30px;
+    }
+  }
+  .popout {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    top: 30vh;
+    left: 10vw;
+    border-radius: 30px;
+    background-color: #fff;
+    width: 80vw;
+    height: 40vh;
+    button {
+      border-radius: 30px;
+    }
+    button:nth-child(1),
+    button:nth-child(2) {
+      width: 70vw;
+      height: 8vh;
+      line-height: 8vh;
+    }
+    button:nth-child(1) {
+      position: absolute;
+      top: 5vh;
+      left: 5vw;
+      background-color: #ffe8a2;
+    }
+    button:nth-child(2) {
+      position: absolute;
+      top: 16vh;
+      left: 5vw;
+      background-color: #fcd19c;
+    }
+    button:nth-child(3) {
+      position: absolute;
+      top: 31vh;
+      width: 40vw;
+      left: 20vw;
+      background-color: #fdc8c2;
+    }
+  }
+  map {
+    position: absolute;
+  }
+}

@@ -261,7 +261,12 @@ export default function Index() {
         >
           扫一扫
         </View>
-        <View className={styles.nav2}>消息中心</View>
+        <View
+          className={styles.nav2}
+          onClick={() => Taro.navigateTo({ url: "/pages/message/index" })}
+        >
+          消息中心
+        </View>
         <View className={styles.funcs}>
           <View className={styles.title}>常用功能</View>
           <View className={styles.contain}>

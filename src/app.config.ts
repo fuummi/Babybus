@@ -1,6 +1,9 @@
 export default defineAppConfig({
   pages: [
     "pages/home/index",
+    "pages/sendmsg/index",
+    "pages/shearposition/index",
+    "pages/message/index",
     "pages/scancode/index",
     "pages/map/index",
     "pages/busrate/index",
