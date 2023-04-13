@@ -1,0 +1,58 @@
+.tab {
+  transition: all 500ms;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  z-index: 999;
+  bottom: 14vh;
+  width: 100vw;
+  height: 20vh;
+  background-color: #fff;
+  border: 1px solid #eee8ee;
+  .navigation {
+    display: inline-block;
+    width: 35vw;
+    height: 30vw;
+    background-color: #16ad5e;
+    color: #fff;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 30vw;
+  }
+  .right {
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    .friend {
+      width: 35vw;
+      height: 12vw;
+      background-color: #fdcd2b;
+      border-radius: 20px;
+      text-align: center;
+      line-height: 12vw;
+    }
+    .info {
+      width: 35vw;
+      height: 12vw;
+      background-color: #fca62b;
+      border-radius: 20px;
+      text-align: center;
+      line-height: 12vw;
+    }
+  }
+}
+.closeTab {
+  transition: all 500ms;
+  width: 10vw;
+  height: 7vw;
+  position: absolute;
+  right: 0;
+  bottom: calc(20vh);
+  text-align: center;
+  color: #fff;
+  font-size: 4.5vw;
+  background-color: #5a736f;
+  border-radius: 2vw 2vw 0 0;
+}

@@ -1,0 +1,100 @@
+.evaluationWrap {
+  position: relative;
+  .topTab {
+    position: absolute;
+    top: 0vh;
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .main {
+    position: absolute;
+    top: 5vh;
+    width: 100vw;
+    height: 94.5vh;
+    background-color: #f0f0f0;
+    padding-top: .5vh;
+    .personRate{
+      background-color: #fff;
+    }
+    .totalRate,
+    .personRate {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 5vh;
+      .owner {
+        position: relative;
+        align-self: flex-start;
+        width: 100vw;
+        background-color: #fff;
+        margin: 0.5vh 0;
+        // border: 1px solid #d1d1d1;
+        .top {
+          width: 100vw;
+          height: 10vh;
+          .title {
+            position: absolute;
+            left: 5vw;
+            top: 2vh;
+            font-size: 5.5vw;
+          }
+          .open {
+            transition: all 300ms;
+            position: absolute;
+            right: 10vw;
+            top: 2.5vh;
+            display: inline-block;
+            width: 6vw;
+            height: 6vw;
+            background-image: url(../../assets/icons/open.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+        }
+        .body {
+          margin-left: 5vw;
+          transition: all 300ms;
+          height: 0;
+          overflow: hidden;
+        }
+      }
+      .rateListItem {
+        width: 90vw;
+        height: 20vw;
+        border-top: 1px solid #c6c1c7;
+        background-color: #fff;
+        position: relative;
+        .busname {
+          position: absolute;
+          left: 2vw;
+          top: 2vw;
+          font-size: 6vw;
+          font-weight: 600;
+        }
+        .busline {
+          position: absolute;
+          left: 2vw;
+          top: 12vw;
+        }
+        .time {
+          position: absolute;
+          top: 12vw;
+          left: 30vw;
+        }
+        .busrate {
+          position: absolute;
+          top: 2vw;
+          right: 5vw;
+          width: 16vw;
+          height: 16vw;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 16vw;
+        }
+      }
+    }
+  }
+}

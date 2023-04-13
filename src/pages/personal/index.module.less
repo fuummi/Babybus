@@ -1,0 +1,83 @@
+.wrap {
+  position: relative;
+  background-color: #f1eff3;
+  height: 100vh;
+  .header {
+    position: absolute;
+    .background {
+      width: 100vw;
+      height: 50vw;
+    }
+    .user {
+      top: -10vw;
+      left: 5vw;
+      position: relative;
+      width: 90vw;
+      height: 30vw;
+      border-radius: 30px;
+      background-color: #fff;
+      image {
+        position: absolute;
+        top: calc(50% - 10vw);
+        left: 8vw;
+        width: 20vw;
+        height: 20vw;
+        border-radius: 50%;
+      }
+      .nickname {
+        position: absolute;
+        top: 11vw;
+        left: 35vw;
+        font-size: 5vw;
+      }
+    }
+  }
+  .main {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+    top: 39vh;
+    left: 5vw;
+    width: 90vw;
+    background-color: #fff;
+    border-radius: 30px;
+    view {
+      width: 85vw;
+      height: 15vw;
+      text-align: center;
+      line-height: 15vw;
+      background-color: #fff;
+      border-bottom: 1px solid #d3c89a;
+      background-repeat: no-repeat;
+      background-size: 10vw 10vw;
+    }
+    view:last-child {
+      border: none;
+    }
+    // .evaluation {
+    //   background-image: url(../../assets/icons/profile.png);
+    // }
+    // .friend {
+    //   background-image: url(../../assets/icons/friend.png);
+    // }
+    // .routes {
+    //   background-image: url(../../assets/icons/map.png);
+    // }
+    // .person {
+    //   background-image: url(../../assets/icons/edit.png);
+    // }
+  }
+  .quit {
+    position: absolute;
+    top: 74vh;
+    left: 35vw;
+    width: 30vw;
+    height: 12vw;
+    line-height: 12vw;
+    background-color: #1aad5d;
+    color: #fff;
+    border-radius: 15px;
+  }
+}
